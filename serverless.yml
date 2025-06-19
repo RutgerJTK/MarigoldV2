@@ -1,6 +1,6 @@
 # serverless.yml
 
-service: marigold-custom-scraping
+service: marigold-scraping-python
 
 provider:
   environment:
@@ -15,8 +15,8 @@ functions:
     memorySize: 256
     timeout: 60
     image:
-      uri: <aws-account-id>.dkr.ecr.us-west-2.amazonaws.com/custom-scraping-python:latest
+      uri: 415187010298.dkr.ecr.eu-central-1.amazonaws.com/marigold-scraping-python
       command:
         - scrapers/scraper.handler
-      events:
-        - schedule: rate(1 day)
+    events:
+      - schedule: rate(1 day)
