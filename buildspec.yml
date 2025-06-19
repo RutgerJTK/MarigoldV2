@@ -1,0 +1,23 @@
+# buildspec.yml
+
+version: 0.2
+env:
+  variables:
+    REGION: eu-central-1
+    VERSION: "1"
+  parameter-store:
+    AWS_ACCOUNT_ID: /marigold-custom-scraping/aws_account_id
+
+phases:
+  install:
+    on-failure: ABORT
+    runtime-versions:
+      python: 3.13
+    commands:
+      - echo "Fetching and setting .env file..."
+      - aws ssm get-parameter --with-decryption --name custom-scraping --region $REGION | jq -r '.Parameter.Value' > $CODEBUILD_SRC_DIR/.env
+  build:
+    on-failure: ABORT
+    commands:
+      - echo "Building Python project..."
+      - $CODEBUILD_SRC_DIR/deploy.sh $AWS_ACCOUNT_ID
