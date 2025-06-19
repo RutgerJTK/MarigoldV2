@@ -1,11 +1,11 @@
 # serverless.yml
 
-service: marigold-scraping-python
+service: marigold-custom-scraping
 
 provider:
+  name: aws
   environment:
     ENV: ${self:provider.stage}
-  name: aws
   region: eu-central-1
   runtime: python3.13
   stage: ${opt:stage, "dev"}
@@ -15,8 +15,6 @@ functions:
     memorySize: 256
     timeout: 60
     image:
-      uri: 415187010298.dkr.ecr.eu-central-1.amazonaws.com/marigold-scraping-python
-      command:
-        - scrapers/scraper.handler
+      uri: 415187010200.dkr.ecr.eu-central-1.amazonaws.com/marigold-scraping-python:latest
     events:
       - schedule: rate(1 day)
