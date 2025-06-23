@@ -5,7 +5,6 @@ env:
   variables:
     REGION: eu-central-1
     VERSION: "1"
-  parameter-store:marigold-scraping-python
 
 phases:
   install:
@@ -19,6 +18,5 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Building Python project..."
+      - echo $AWS_ACCOUNT_ID
       - $CODEBUILD_SRC_DIR/deploy.sh $AWS_ACCOUNT_ID
-
-npx serverless deploy --stage=dev --verbose
