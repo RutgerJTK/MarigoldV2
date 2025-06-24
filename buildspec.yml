@@ -15,7 +15,7 @@ phases:
       python: 3.13
     commands:
       - echo "Fetching and setting .env file..."
-      - aws ssm get-parameter --with-decryption --name custom-scraping --region $REGION | jq -r '.Parameter.Value' > $CODEBUILD_SRC_DIR/.env
+      - aws ssm get-parameter --with-decryption --name marigold-custom-scraping --region $REGION | jq -r '.Parameter.Value' > $CODEBUILD_SRC_DIR/.env
   build:
     on-failure: ABORT
     commands:
