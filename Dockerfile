@@ -1,14 +1,24 @@
-# Dockerfile
+FROM python:3.12-slim
 
-FROM public.ecr.aws/lambda/python:3.13
+# Install required build tools
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    curl \
+    git \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    cargo \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install system dependencies required for lxml and other packages
-RUN dnf update -y && \
-    dnf install -y libxml2-devel libxslt-devel gcc gcc-c++ make && \
-    dnf clean all
+# Set working directory
+WORKDIR /app
 
-# Copy your application code
-COPY . ${LAMBDA_TASK_ROOT}
+# Copy project files
+COPY . .
 
-# Install Python dependencies
+# Upgrade pip and install Python deps
+RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
+# Install Rust toolchain
