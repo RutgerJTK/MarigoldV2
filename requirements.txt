@@ -35,5 +35,3 @@ thrift==0.20.0
 typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.1
-libxml2==2.9.14
-libxslt==1.1.37
