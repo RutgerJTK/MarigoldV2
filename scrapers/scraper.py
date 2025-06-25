@@ -13,7 +13,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 def ias_scraper(url):
     print("Running ias belgium scraper")
-    HEADLESS = False
+    HEADLESS = True
     firefox_options = Options()
 
     if HEADLESS:

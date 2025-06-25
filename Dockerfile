@@ -1,15 +1,32 @@
 FROM python:3.12-slim
 
-# Install required build tools
+# Avoid prompts during package install
+ENV DEBIAN_FRONTEND=noninteractive
+
+
+# Install system dependencies for Selenium & Firefox
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    curl \
-    git \
-    libssl-dev \
-    libffi-dev \
-    python3-dev \
-    cargo \
+    firefox-esr \
+    wget \
+    libgtk-3-0 \
+    libdbus-glib-1-2 \
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libpango-1.0-0 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libxinerama1 \
+    fonts-liberation \
+    libappindicator1 \
+    xdg-utils \
+    unzip \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -22,3 +39,6 @@ COPY . .
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
 # Install Rust toolchain
+
+# Set Lambda entrypoint (update if handler is in scraper.py)
+CMD ["scrapers.scraper.handler"]
