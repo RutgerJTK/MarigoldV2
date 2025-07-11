@@ -77,13 +77,13 @@ def csv_writer(species_dict, file):
 # The handler function gets called by the dockerfile.
 def handler(event, context):
     print("running Handler")
-    starttime = time.time()
-    file = "ias_belgium_species.csv"
-    ias_url = "https://ias.biodiversity.be/species/all"
-    species_dict = ias_scraper(ias_url)
-    csv_writer(species_dict, file)
-    endtime = time.time()
-    print(f"Execution time: {endtime - starttime} seconds")
+    # starttime = time.time()
+    # file = "ias_belgium_species.csv"
+    # ias_url = "https://ias.biodiversity.be/species/all"
+    # species_dict = ias_scraper(ias_url)
+    # csv_writer(species_dict, file)
+    # endtime = time.time()
+    # print(f"Execution time: {endtime - starttime} seconds")
 
 
 # This is for testing locally; the handler function will be called by AWS Lambda.
