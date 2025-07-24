@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12
 
 # Avoid prompts during package install
 ENV DEBIAN_FRONTEND=noninteractive
@@ -39,6 +39,9 @@ COPY . .
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
 # Install Rust toolchain
+
+
+
 
 # Set Lambda entrypoint (update if handler is in scraper.py)
 CMD ["./scrapers/scraper.handler"]
