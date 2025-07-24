@@ -5,14 +5,13 @@ provider:
   environment:
     ENV: ${self:provider.stage}
   region: eu-central-1
-  runtime: python3.12  # ← Change this
   stage: ${opt:stage, "dev"}
 
 functions:
   scraper:
-    handler: scrapers.scraper.handler  # ← Add this
+    image:
+      uri: 415187010298.dkr.ecr.eu-central-1.amazonaws.com/marigold-scraping-python:latest
     memorySize: 256
-    timeout: 300  # 5 minutes
-    # Remove the image section for now
+    timeout: 300
     events:
       - schedule: rate(1 day)
