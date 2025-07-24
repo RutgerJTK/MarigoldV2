@@ -41,4 +41,4 @@ RUN pip install -r requirements.txt
 # Install Rust toolchain
 
 # Set Lambda entrypoint (update if handler is in scraper.py)
-CMD ["scrapers.scraper.handler"]
+CMD ["./scrapers/scraper.handler"]
